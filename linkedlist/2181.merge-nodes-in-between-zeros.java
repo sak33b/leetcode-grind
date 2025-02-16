@@ -16,6 +16,9 @@
  * }
  */
 class Solution {
+
+    // Time Complexity: O(n), Space Complexity: O(1)
+
     public ListNode mergeNodes(ListNode head) {
         
         ListNode previous = head;

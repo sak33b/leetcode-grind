@@ -6,7 +6,10 @@
 
 // @lc code=start
 class Solution {
-    public int findMaxConsecutiveOnes(int[] nums) { // O(n)
+
+    // Time Complexity: O(n), Space Complexity O(1)
+
+    public int findMaxConsecutiveOnes(int[] nums) {
         
         int maxOnes = 0;
 

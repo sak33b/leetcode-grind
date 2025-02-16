@@ -20,6 +20,9 @@
 import java.util.ArrayList;
 
 public class Solution {
+
+    // Time Complexity: O(n), Space Complexity O(1)
+
     public boolean hasCycle(ListNode head) {
         
         ListNode fast = head;

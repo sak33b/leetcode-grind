@@ -16,7 +16,10 @@
  * }
  */
 class Solution {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+    // Time Complexity: O(n), Space Complexity: O(1)
+
+    public ListNode removeNthFromEnd(ListNode head, int n) { // O(n)
 
         if (head.next == null) {
             return null;
@@ -46,7 +49,7 @@ class Solution {
         return head;
     }
 
-    public int calculateSize(ListNode head) {
+    public int calculateSize(ListNode head) { // O(n)
         
         int size = 0;
         
