@@ -22,17 +22,16 @@
  */
 class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
-        if (nums.length == 1) {
-            return new TreeNode(nums[0]);
-        } 
-        if (nums.length == 2) {
-            return new TreeNode(nums[1], new TreeNode(nums[0]), null);
-        }
-        int mid = nums.length / 2;
-        int[] left = java.util.Arrays.copyOfRange(nums, 0, mid);
-        int[] right = java.util.Arrays.copyOfRange(nums, mid + 1, nums.length);
+       return sortedArrayToBST(nums, 0, nums.length - 1);
+    }
 
-        return new TreeNode(nums[mid], sortedArrayToBST(left), sortedArrayToBST(right));
+    public TreeNode sortedArrayToBST(int[] nums, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+        int mid = (start + end) / 2;
+        return new TreeNode(nums[mid], sortedArrayToBST(nums, start, mid - 1), sortedArrayToBST(nums, mid + 1, end));
     }
 }
 // @lc code=end
