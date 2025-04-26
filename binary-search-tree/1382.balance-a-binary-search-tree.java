@@ -22,44 +22,39 @@
  */
 class Solution {
     public TreeNode balanceBST(TreeNode root) {
-        int[] inorder = new int[nodeCount(root)];
-        populate(inorder, root, new int[] {0});
-        return balanceBST(inorder);
+
+        int nodeCount = getNodeCount(root);
+        int[] inorder = new int[nodeCount];
+        fillInorder(root, inorder, 0);
+        return createBST(inorder, 0, nodeCount - 1);
     }
 
-    public TreeNode balanceBST(int[] inorder) {
-        int length = inorder.length;
-        
-        if (length == 0) {
+    public TreeNode createBST(int[] inorder, int start, int end) {
+        if (start > end) {
             return null;
-        } else if (length == 1) {
-            return new TreeNode(inorder[0]);
-        } else if (length == 2) {
-            return new TreeNode(inorder[1], new TreeNode(inorder[0]), null);
         }
-
-        int mid = length / 2;
-        int[] left = java.util.Arrays.copyOfRange(inorder, 0, mid);
-        int[] right = java.util.Arrays.copyOfRange(inorder, mid + 1, length);
-
-        return new TreeNode(inorder[mid], balanceBST(left), balanceBST(right));
+        int mid = (start + end) / 2;
+        return new TreeNode(inorder[mid], createBST(inorder, start, mid - 1), createBST(inorder, mid + 1, end));
     }
 
-    public void populate(int[] array, TreeNode root, int[] i) {
+    public int fillInorder(TreeNode root, int[] inorder, int index) {
         if (root == null) {
-            return;
+            return index;
         }
-        populate(array, root.left, i);
-        array[i[0]++] = root.val;
-        populate(array, root.right, i);
+        index = fillInorder(root.left, inorder, index);
+        inorder[index++] = root.val;
+        index = fillInorder(root.right, inorder, index);
+
+        return index;
     }
 
-    public int nodeCount(TreeNode root) {
+    public int getNodeCount(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        return 1 + nodeCount(root.left) + nodeCount(root.right);
+        return 1 + getNodeCount(root.left) + getNodeCount(root.right);
     }
+
 }
 // @lc code=end
 
